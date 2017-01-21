@@ -26,8 +26,8 @@ Rails.application.configure do
   
   #email confirmation with SENDGRID
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'https://berkbang2.herokuapp.com/', :protocol => 'https'}
-  # Compress JavaScripts and CSS.
+  config.action_mailer.default_url_options = {:host => 'berkbang2.herokuapp.com/', :protocol => 'https'}
+    # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
