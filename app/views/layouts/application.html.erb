@@ -52,6 +52,19 @@
             <li><%= link_to "Link2", "/path2"  %></li>
             <li><%= link_to "Link3", "/path3"  %></li>
           </ul>
+          <ul class="nav navbar-right col-md-4">
+            <% if current_user %>
+              <li class="col-md-8 user-name">
+                <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe, edit_user_registration_path, title: '프로필 수정하기' %>
+              </li>
+              <li class="col-md-1"></li>
+              <li class="col-md-3 logout"><%= link_to('로그아웃', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
+            <% else %>
+              <li class="col-md-4 pull-right">
+                <%= link_to('로그인', new_user_session_path, class: 'btn btn-primary', title: '로그인') %>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>

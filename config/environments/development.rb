@@ -5,7 +5,8 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = {:host => 'https://udemy-limdan7.c9users.io/'}
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -23,8 +24,7 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
   
   #email confirmation
-  config.action_mailer.delivery_method = :test
-  config.action_mailer.default_url_options = {:host => 'https://udemy-limdan7.c9users.io/'}
+
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
