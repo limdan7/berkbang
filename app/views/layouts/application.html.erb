@@ -55,6 +55,7 @@
           <ul class="nav navbar-right col-md-4">
             <% if current_user %>
               <li class="col-md-8 user-name">
+                <%= image_tag(current_user.image) %>
                 <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe, edit_user_registration_path, title: '프로필 수정하기' %>
               </li>
               <li class="col-md-1"></li>

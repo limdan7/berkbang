@@ -20,6 +20,6 @@
 
 <% if devise_mapping.omniauthable? %>
   <% resource_class.omniauth_providers.each do |provider| %>
-  <%= link_to t('.sign_in_with_provider', provider: provider.to_s.titleize, default: "Sign in with #{provider.to_s.titleize}"), omniauth_authorize_path(resource_name, provider) %><br />
+  <%= link_to "페이스북으로 로그인하기", user_facebook_omniauth_authorize_path %>
   <% end %>
 <% end %>
