@@ -15,7 +15,7 @@ Devise.setup do |config|
   config.mailer_sender = 'doNotReply@berkbang.com'
   
   
-  config.omniauth :facebook, "322165788177202", "12cd3bcc502e348e64d66b33b0f4f4c0",callback_url: "https://udemy-limdan7.c9users.io/users/auth/facebook/callback"
+  config.omniauth :facebook, "322165788177202", "12cd3bcc502e348e64d66b33b0f4f4c0",callback_url: "https://berkbang2.herokuapp.com/users/auth/facebook/callback"
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
