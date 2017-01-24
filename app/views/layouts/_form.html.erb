@@ -1,0 +1,18 @@
+<% if @room.errors.any? %>
+  <h2>에러발생</h2>
+  <ul>
+    <% @room.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
+<%= form_for @room do |f| %>
+  <%= f.label '주소' %>
+  <%= f.text_field :address %>
+  <%= f.label '설명' %>
+  <%= f.text_area :description%>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "방 목록으로 돌아가기", rooms_path %>

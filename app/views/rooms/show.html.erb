@@ -1,0 +1,6 @@
+<h1><%= @room.address %></h1>
+<p>
+  설명 : <%= @room.description %>
+  <%= link_to "수정하기", edit_room_path(@room) %>
+  <%= link_to "방 목록으로", rooms_path %>
+</p>

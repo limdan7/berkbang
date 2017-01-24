@@ -1,0 +1,12 @@
+<h1>전체 방 보기</h1>
+<%= link_to "방 등록하기", new_room_path %>
+ㄴ
+<% @rooms.each do |room| %>
+  <p>
+  <%= room.address %>
+  <%= room.description %>
+  <%= link_to "수정하기", edit_room_path(room) %>
+  <%= link_to "글 보기", room_path(room) %>
+  <%= link_to "글 삭제하기", room_path(room), method::delete, data:{confirm:"정말 삭제하시겠습니까?"} %>
+  </p>
+<% end %>
