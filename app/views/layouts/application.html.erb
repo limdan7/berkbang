@@ -48,7 +48,14 @@
         <a class="navbar-brand" href="/">벜방</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "방 보기", rooms_path  %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">방<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "방 등록하기", new_room_path %></li>
+                <li><%= link_to "방 보기", rooms_path  %></li>
+              </ul>
+            </li>
+
 
           </ul>
           <ul class="nav navbar-right col-md-4">
