@@ -10,7 +10,7 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
-    <!-- Size should be 144 x 144 pixels -->
+    <!-- Size should be 144 x 144 pixels -->  
     <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
 
     <!-- For iPhone with high-resolution Retina display: -->
@@ -55,14 +55,17 @@
                 <li><%= link_to "방 보기", rooms_path  %></li>
               </ul>
             </li>
-
-
           </ul>
+          
           <ul class="nav navbar-right col-md-4">
             <% if current_user %>
-              <li class="col-md-8 user-name">
+              <li class="col-md-8 user-name dropdown">
                 <%= image_tag(current_user.image) %>
-                <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe, edit_user_registration_path, title: '프로필 수정하기' %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><%= current_user.email %><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "프로필 수정하기", edit_user_registration_path %></li>
+                  <li><a href= '/users/<%=current_user.id%>' >내 글 목록</a></li>
+                </ul>
               </li>
               <li class="col-md-1"></li>
               <li class="col-md-3 logout"><%= link_to('로그아웃', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>

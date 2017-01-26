@@ -1,16 +1,18 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:edit, :update, :show, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def new
     @room = Room.new
   end
   
   def index
-    @rooms = Room.all
+    @rooms = Room.paginate(page: params[:page], per_page: 5)
   end
   
   def create
     @room = Room.new(room_params)
+    @room.user = User.first
     if @room.save
       flash[:notice] = "방이 성공적으로 등록되었습니다."
       redirect_to room_path(@room)
@@ -48,4 +50,12 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:address, :description)
     end
+    
+    def require_same_user
+      if current_user != @room.user
+        flash[:danger] = "자신이 작성한 글만 수정/삭제 가능합니다."
+        redirect_to root_path
+      end
+    end
+    
 end
