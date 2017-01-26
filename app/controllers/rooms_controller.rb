@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
   
   def create
     @room = Room.new(room_params)
-    @room.user = User.first
+    @room.user = current_user
     if @room.save
       flash[:notice] = "방이 성공적으로 등록되었습니다."
       redirect_to room_path(@room)
@@ -52,7 +52,7 @@ class RoomsController < ApplicationController
     end
     
     def require_same_user
-      if current_user != @room.user
+      if current_user != @room.user and !current_user.admin?
         flash[:danger] = "자신이 작성한 글만 수정/삭제 가능합니다."
         redirect_to root_path
       end
