@@ -3,8 +3,9 @@
   <h4 class="center description"><strong>내용</strong></h4>
   <hr>
   <%= simple_format(@room.description) %>
-  <%= @room.user.id %>
-  <%= current_user.id %>
+  <% if @room.categories.any? %>
+    <p>카테고리: <%= render @room.categories %></p>
+  <% end %>
   <% if signed_in? && (current_user==@room.user || current_user.admin?) %>
   <div class="room-actions">
     <%= link_to "수정하기", edit_room_path(@room), class: "btn btn-xs btn-primary" %>
