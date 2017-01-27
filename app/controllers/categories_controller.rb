@@ -24,19 +24,7 @@ class CategoriesController < ApplicationController
     @category_rooms= @category.rooms.paginate(page: params[:page], per_page: 5)
   end
   
-  private
-    def category_params
-      params.require(:category).permit(:name)
-    end
-    
-    def require_admin
-      if !user_signed_in? || (user_signed_in? and !current_user.admin?)
-        flash[:danger] = "운영자만이 이 기능을 사용 할 수 있습니다"
-        redirect_to categories_path
-      end
-    end
-    
-    def edit
+   def edit
       @category = Category.find(params[:id])
     end
     
@@ -49,6 +37,18 @@ class CategoriesController < ApplicationController
         render 'edit'
       end
     end
-        
+  private
+    def category_params
+      params.require(:category).permit(:name)
     end
+    
+    def require_admin
+      if !user_signed_in? || (user_signed_in? and !current_user.admin?)
+        flash[:danger] = "운영자만이 이 기능을 사용 할 수 있습니다"
+        redirect_to categories_path
+      end
+    end
+    
+   
+        
 end

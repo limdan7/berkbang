@@ -48,7 +48,7 @@ class RoomsController < ApplicationController
     end
     
     def room_params
-      params.require(:room).permit(:address, :description, :category_ids: [])
+      params.require(:room).permit(:address, :description,category_ids: [])
     end
     
     def require_same_user

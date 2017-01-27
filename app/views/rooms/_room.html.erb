@@ -1,14 +1,14 @@
-<% if room.categories.any? %>
-  <p>카테고리: <%= render room.categories %></p>
-<% end %>
-
 <% obj.each do |room| %>
+
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
     <div class="well well-lg">
       <div class="room-address">
         <%= link_to room.address, room_path(room) %>
       </div>
+      <% if room.categories.any? %>
+        <p>카테고리: <%= render room.categories %></p>
+      <% end %>
       <div class="room-body">
         <%= truncate(room.description, length: 100) %>
         <div class="room-meta-details">
