@@ -48,7 +48,8 @@ class RoomsController < ApplicationController
     end
     
     def room_params
-      params.require(:room).permit(:address, :description,category_ids: [])
+      params.require(:room).permit(:address, :description,:price, :start_date, :finish_date, :bath, :image,
+      :room_private,:room_type,:utility,:parking,:parking_fee,:deposit,:gender, :furnished,:furnished_details,category_ids: [])
     end
     
     def require_same_user

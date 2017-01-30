@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :categories, except:[:destroy]
   resources :rooms
   get '/users/:id' => 'users#show'
+  get 'welcome/gallery'=> 'welcome#gallery'
   root 'welcome#index'
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

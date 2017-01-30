@@ -2,13 +2,143 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <%= form_for(@room, :html => {class:"form-horizontal", role:"form"}) do |f| %>
+    <%= form_for(@room, :html => { multiplart: true, class:"form-horizontal", role:"form"}) do |f| %>
     <div class="form-group">
       <div class="control-label col-sm-2">
         <%= f.label '주소' %>
       </div>
       <div class="col-sm-8">
         <%= f.text_field :address, class:"form-control",placeholder:"주소를 적어주세요. e.g. 2731 Haste", autofocus: true%>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label '이미지' %>
+      </div>
+      <div class="col-sm-8">
+        <%= f.file_field :image, class:"form-control"%>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label '남자/여자' %>
+      </div>
+      <div class="col-sm-4 btn-group" data-toggle="buttons">
+        <label class="btn btn-custom">
+          <%= radio_button("room","gender","남자")%> 남자  
+        </label>
+        <label class="btn btn-custom">
+          <%= radio_button("room","gender","여자")%> 여자
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label '렌트 기간' %>
+      </div>
+      <div class="col-sm-3">
+         <div class="input-group date">
+          <span class="input-group-addon">
+            시작일
+          </span>
+          <%= f.date_field :start_date, class:"form-control", autofocus: true%>
+          <span class="input-group-addon">
+            종료일
+          </span>
+          <%= f.date_field :finish_date, class:"form-control", autofocus: true%>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label '월세 / 보증금 / 유틸' %>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group">
+          <span class="input-group-addon price-margin">$</span></span>
+          <%= f.number_field :price, class:"form-control",placeholder:"월세", autofocus: true%>
+          <span class="input-group-addon">$</span>
+          <%= f.number_field :deposit, class:"form-control",placeholder:"보증금", autofocus: true%>
+          <span class="input-group-addon">$</span>
+          <%= f.number_field :utility, class:"form-control",placeholder:"유틸", autofocus: true%>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label '주차공간' %>
+      </div>
+      <div class="col-sm-2 btn-group" data-toggle="buttons">
+        <label class="btn btn-custom">
+          <%= radio_button("room","parking",true)%>예
+        </label>
+        <label class="btn btn-custom">
+          <%= radio_button("room","parking",false)%>아니오
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <div class="input-group">
+          <span class="input-group-addon">주차비 $</span>
+          <%= f.number_field :parking_fee, class:"form-control", placeholder:"30" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label '방 종류' %>
+      </div>
+     <div class="col-sm-4 btn-group" data-toggle="buttons">
+        <label class="btn btn-custom">
+          <%= radio_button("room","room_private","혼자 쓰는 방")%> 혼자 쓰는방
+        </label>
+        <label class="btn btn-custom">
+          <%= radio_button("room","room_private","나눠 쓰는 방")%> 나눠 쓰는방
+        </label>
+        <label class="btn btn-custom">
+          <%= radio_button("room","room_private","집 전체")%> 집 전체
+        </label>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label '방 타입' %>
+      </div>
+      <div class="col-sm-3 btn-group" data-toggle="buttons">
+        <label class="btn btn-custom">
+          <%= radio_button("room","room_type","스튜디오")%> Studio
+        </label>
+        <label class="btn btn-custom">
+          <%= radio_button("room","room_type","1배드")%> 1 bed 
+        </label>
+        <label class="btn btn-custom">
+          <%= radio_button("room","room_type","2배드")%> 2 bed
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <div class="input-group">
+          <span class="input-group-addon">화장실</span>
+          <%= f.number_field :bath, class:"form-control", placeholder:"1" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label '가구(Furnished)' %>
+      </div>
+      <div class="col-sm-2 btn-group" data-toggle="buttons">
+        <label class="btn btn-custom">
+          <%= radio_button("room","furnished",true)%>예
+        </label>
+        <label class="btn btn-custom">
+          <%= radio_button("room","furnished",false)%>아니오
+        </label>
       </div>
     </div>
     <div class="form-group">
@@ -22,15 +152,17 @@
     <div class="form-group">
       <div class="row">
         <div class="col-sm-offset-2 col-sm-8">
-          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|%>
-            <% cb.label(class:"checkbox-inline input_checkbox"){cb.check_box(class:"checkbox")+cb.text} %>
-          <% end %>
+          <div class="btn-group" data-toggle="buttons">
+            <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb|%>
+                <% cb.label(class:"checkbox-inline input_checkbox btn btn-custom"){cb.check_box(class:"checkbox")+cb.text} %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit '작성완료', class: 'btn btn-primary btn-lg' %>
+        <%= f.submit '작성완료', class: 'btn btn-custom btn-lg' %>
       </div>
     </div>
     <% end %>
@@ -39,3 +171,4 @@
     </div>
   </div>
 </div>
+

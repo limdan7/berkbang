@@ -2,6 +2,32 @@
 <div class="well col-xs-8 col-xs-offset-2">
   <h4 class="center description"><strong>내용</strong></h4>
   <hr>
+  <%= image_tag @room.image.url(:large)%> <br>
+  성별 : <%= @room.gender %><br>
+  가격 : <%=@room.price %> <br>
+  유틸 : <%=@room.utility %> <br>
+  보증금 : <%=@room.deposit %> <br>
+  기간 <%=@room.start_date %> ~ <%= @room.finish_date %> <br>
+  방종류: <%=@room.room_private %> <br>
+  방타입: <%= @room.room_type %> <br>
+  화장실:  <%= @room.bath %> <br>
+  주차: <% if @room.parking %>
+            공간있음
+            <% if @room.parking_fee %>
+              => $<%= @room.parking_fee %>
+            <% end %>
+        <% else%>
+            공간없음
+        <% end%>
+  <br>
+  가구 : <% if @room.furnished %>
+          가구 있음
+        <% else %>
+        가구없음
+        <% end %>
+  <br>
+  <hr>
+  
   <%= simple_format(@room.description) %>
   <% if @room.categories.any? %>
     <p>카테고리: <%= render @room.categories %></p>
