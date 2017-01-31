@@ -1,4 +1,7 @@
 <%= render 'shared/errors', obj: @room %>
+<script>
+  $(".address").geocomplete();
+</script>
 
 <div class="row">
   <div class="col-xs-12">
@@ -8,7 +11,7 @@
         <%= f.label '주소' %>
       </div>
       <div class="col-sm-8">
-        <%= f.text_field :address, class:"form-control",placeholder:"주소를 적어주세요. e.g. 2731 Haste", autofocus: true%>
+        <%= f.text_field :address,class:"address form-control",placeholder:"주소를 적어주세요. e.g. 2731 Haste", autofocus: true%>
       </div>
     </div>
     

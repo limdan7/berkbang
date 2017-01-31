@@ -3,8 +3,8 @@ class Room < ActiveRecord::Base
   has_many :categories,through: :room_categories
   has_attached_file :image, :styles => {large: "600x600>", medium: "300x300>", thumb: "150x150#"}
   #geocode lines
-  geocoded_by :full_street_address
-  after_validation :geocode
+  geocoded_by :address
+  after_validation :geocode,  if: ->(obj){ obj.address.present? and obj.address_changed? }
   
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode

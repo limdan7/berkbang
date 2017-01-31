@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
+gem 'jquery-ui-rails'
+gem 'geocomplete_rails'
 gem 'geocoder'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem 'omniauth-facebook'
+gem 'gmaps-autocomplete-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 gem 'will_paginate', '3.0.7'
@@ -53,7 +56,7 @@ group :development do
   end
   
 group :assets do
-  gem 'jquery-ui-rails'
+  
 end
 
 group :production do 

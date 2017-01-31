@@ -3,6 +3,8 @@
   <h4 class="center description"><strong>내용</strong></h4>
   <hr>
   <%= image_tag @room.image.url(:large)%> <br>
+  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@room.latitude},#{@room.longitude}&markers=#{@room.latitude},#{@room.longitude}&zoom=15&size=300x300&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+              class: 'img-fluid img-rounded', alt: "#{@room.address} on the map"%>
   성별 : <%= @room.gender %><br>
   가격 : <%=@room.price %> <br>
   유틸 : <%=@room.utility %> <br>
