@@ -1,0 +1,23 @@
+<div id="main">
+	<div class="inner">
+		<section class="tiles">
+		  <% obj.each do |room| %>
+  			<article>
+  				<span class="image">
+  				  <%= image_tag room.image.url(:medium)%>
+  				</span>
+  				<a href=<%= room_path(room) %>>
+  					<h2><%= room.room_private%> <br>
+  					     $<%= room.price%><br>
+  					</h2>
+  					<div class="content">
+  						<p>기간 : <%= room.start_date.to_s.at(5..6)%>월 <%= room.start_date.to_s.at(0..3)%> 
+  						~<%= room.finish_date.to_s.at(5..6)%>월 <%= room.finish_date.to_s.at(0..3)%></p>
+  					</div>
+  				</a>
+  				<%= room.address %>
+  			</article>
+      <% end %>
+		</section>
+	</div>
+</div>

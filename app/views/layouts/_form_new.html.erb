@@ -1,0 +1,22 @@
+<%= render 'shared/errors', obj: @room %>
+
+<!-- Form -->
+
+<%= form_for(@room, :html => { multiplart: true}) do |f| %>
+<section>
+	<div class="row uniform">
+    <!-- 주소 -->
+		<div class="12u">
+		  <%= f.text_field :address, class:"geocomplete",placeholder:"주소"%>
+		</div>
+		<!-- 사진 -->
+	
+		<div class="3u"></div>
+		<div class="6u$">
+			<%= f.submit '작성완료', class: 'btn fit' %>
+		</div>
+	</div>
+</section>
+<% end %>
+
+
