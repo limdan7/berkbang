@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   resources :categories, except:[:destroy]
   resources :rooms
+  resources :pictures
   get '/users/:id' => 'users#show'
   get 'welcome/gallery'=> 'welcome#gallery'
   root 'welcome#index'

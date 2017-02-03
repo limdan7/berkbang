@@ -1,6 +1,8 @@
 class Room < ActiveRecord::Base
   has_many :room_categories
   has_many :categories,through: :room_categories
+  has_many :pictures, :dependent => :destroy
+  
   has_attached_file :image, :styles => {large: "600x600>", medium: "300x300>", thumb: "150x150#"}
   #geocode lines
   geocoded_by :address
