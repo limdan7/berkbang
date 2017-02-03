@@ -1,9 +1,10 @@
 class Room < ActiveRecord::Base
   has_many :room_categories
   has_many :categories,through: :room_categories
-  has_many :pictures, :dependent => :destroy
   
   has_attached_file :image, :styles => {large: "600x600>", medium: "300x300>", thumb: "150x150#"}
+  has_attached_file :image2, :styles => {large: "600x600>", medium: "300x300>", thumb: "150x150#"}
+  has_attached_file :image3, :styles => {large: "600x600>", medium: "300x300>", thumb: "150x150#"}
   #geocode lines
   geocoded_by :address
   after_validation :geocode,  if: ->(obj){ obj.address.present? and obj.address_changed? }

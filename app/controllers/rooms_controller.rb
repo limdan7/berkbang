@@ -7,20 +7,13 @@ class RoomsController < ApplicationController
   end
   
   def index
-    @rooms = Room.paginate(page: params[:page], per_page: 5)
+    @rooms = Room.paginate(page: params[:page], per_page: 12)
   end
   
   def create
     @room = Room.new(room_params)
     @room.user = current_user
     if @room.save
-
-      if params[:images]
-        #===== The magic is here ;)
-        params[:images].each { |image|
-          @room.pictures.create(image: image)
-        }
-      end
       
       flash[:notice] = "방이 성공적으로 등록되었습니다."
       redirect_to room_path(@room)
@@ -43,12 +36,7 @@ class RoomsController < ApplicationController
     
   def update
     if @room.update(room_params)
-      if params[:images]
-        #===== The magic is here ;)
-        params[:images].each { |image|
-          @room.pictures.create(image: image)
-        }
-      end
+      
       flash[:notice] = "포스팅 수정이 완료되었습니다."
       redirect_to room_path(@room)
     else
@@ -62,7 +50,7 @@ class RoomsController < ApplicationController
     end
     
     def room_params
-      params.require(:room).permit(:address, :description,:price, :start_date, :finish_date, :bath, :pictures,
+      params.require(:room).permit(:address, :description,:price, :start_date, :finish_date, :bath, :image, :image2, :image3,
       :room_private,:room_type,:utility,:parking,:parking_fee,:deposit,:gender, :furnished,:furnished_details,category_ids: [])
     end
     

@@ -18,14 +18,20 @@
     </div>
     
     <div class="form-group">
-      <div class="control-label col-xs-2">
-        <%= f.label '사진' %>
-      </div>
-      <div class="col-md-2 col-xs-8">
-        <%= file_field_tag "images[]", type: :file, multiple: true%>
-      </div>
-    </div>
-    
+	     <div class="control-label col-sm-2 col-xs-2">
+	       <%= f.label '사진' %>
+	     </div>
+	     <div class="col-sm-3 col-sm-offset-0 col-xs-8">
+	       <%= f.file_field :image, class:"form-control"%>
+	     </div>
+	     <div class="col-sm-3 col-sm-offset-0 col-xs-offset-2 col-xs-8">
+	       <%= f.file_field :image2, class:"form-control"%>
+	     </div>
+	     <div class="col-sm-3 col-sm-offset-0 col-xs-offset-2 col-xs-8">
+	       <%= f.file_field :image3, class:"form-control"%>
+	     </div>
+	   </div>
+
     <div class="form-group">
       <div class="control-label col-xs-2">
         <%= f.label '성별' %>
@@ -165,7 +171,7 @@
     </div>
     <div class="form-group">
       <div class="col-xs-offset-2 col-xs-4">
-        <%= f.submit '작성완료', class: 'btn' %>
+        <%= f.submit '작성완료', class: 'btn btn-custom' %>
       </div>
       <div class="col-xs-offset-2">
         <%= link_to "방 목록으로 돌아가기", rooms_path, class:"btn btn-custom"%>
