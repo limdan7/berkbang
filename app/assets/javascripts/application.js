@@ -10,15 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery.min
 //= require main.js
 //= require skel.min
 //= require util
 //= require ie/html5shiv
 //= require ie/respond.min
-//= require jquery_ujs
-//= require jquery-ui
 //= require geocomplete
 //= require twitter/bootstrap
+//= require jquery_ujs
+//= require jquery-ui
+//= require jquery
+//= require jquery.min
 //= require_tree .
