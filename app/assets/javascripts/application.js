@@ -14,11 +14,11 @@
 //= require jquery.min
 //= require jquery_ujs
 //= require jquery-ui
+//= require twitter/bootstrap
+//= require geocomplete
 //= require main.js
 //= require skel.min
 //= require util
 //= require ie/html5shiv
 //= require ie/respond.min
-//= require geocomplete
-//= require twitter/bootstrap
 //= require_tree .
