@@ -1,5 +1,19 @@
 <h2 align='center'><%= @room.address %></h2>
 
+<div class="map_canvas"></div>
+
+<script>
+    $(function(){
+      
+      var options = {
+        map: ".map_canvas",
+        location: "NYC"
+      };
+      
+      $('<%= @room.address %>').geocomplete(options);
+      
+    });
+</script>
 
 
 <div class="box alt">
@@ -7,9 +21,8 @@
     <div class="col-sm-4 col-xs-12 center"><span class="image"><%= image_tag @room.image.url(:medium), class:"image-container"%></span></div>
     <div class="col-sm-4 col-xs-12 center"><span class="image"><%= image_tag @room.image2.url(:medium), class:"image-container"%></span></div>
     <div class="col-sm-4 col-xs-12 center"><span class="image"><%= image_tag @room.image3.url(:medium), class:"image-container"%></span></div>
-    <div class="col-sm-12 col-xs-12 center"><span class="image"><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@room.latitude},#{@room.longitude}&markers=#{@room.latitude},#{@room.longitude}&zoom=15&size=300x300&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
-                class: 'img-rounded', alt: "#{@room.address} on the map"%></span></div>
   </div>
+  
   <div class="row uniform">
     <div class="col-xs-6">
       <label>성별</label>
@@ -23,6 +36,7 @@
     <div class="col-sm-10">
       <%= @room.price %>
     </div>
+  
     성별 : <%= @room.gender %><br>
     가격 : <%=@room.price %> <br>
     유틸 : <%=@room.utility %> <br>
@@ -63,3 +77,6 @@
     </div>
   </div>
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbxwO7cCzPQReu-VRL9C4xGmz-JqKziLI" async defer>
+</script>
