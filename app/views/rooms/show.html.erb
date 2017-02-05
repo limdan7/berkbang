@@ -1,47 +1,65 @@
 <h2 align='center'><%= @room.address %></h2>
-<div class="well col-xs-8 col-xs-offset-2">
-  <h4 class="center description"><strong>내용</strong></h4>
-  <hr>
-  <div align="center"><%= image_tag @room.image.url(:medium)%></div>
-  <div align="center"><%= image_tag @room.image2.url(:medium)%></div>
-  <div align="center"><%= image_tag @room.image3.url(:medium)%></div>
-  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@room.latitude},#{@room.longitude}&markers=#{@room.latitude},#{@room.longitude}&zoom=15&size=300x300&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
-              class: 'img-fluid img-rounded', alt: "#{@room.address} on the map"%>
-  성별 : <%= @room.gender %><br>
-  가격 : <%=@room.price %> <br>
-  유틸 : <%=@room.utility %> <br>
-  보증금 : <%=@room.deposit %> <br>
-  기간 <%=@room.start_date %> ~ <%= @room.finish_date %> <br>
-  방종류: <%=@room.room_private %> <br>
-  방타입: <%= @room.room_type %> <br>
-  화장실:  <%= @room.bath %> <br>
-  주차: <% if @room.parking %>
-            공간있음
-            <% if @room.parking_fee %>
-              => $<%= @room.parking_fee %>
-            <% end %>
-        <% else%>
-            공간없음
-        <% end%>
-  <br>
-  가구 : <% if @room.furnished %>
-          가구 있음
-        <% else %>
-        가구없음
-        <% end %>
-  <br>
-  <hr>
-  
-  <%= simple_format(@room.description) %>
-  <% if @room.categories.any? %>
-    <p>카테고리: <%= render @room.categories %></p>
-  <% end %>
-  <% if signed_in? && (current_user==@room.user || current_user.admin?) %>
-  <div class="room-actions">
-    <%= link_to "수정하기", edit_room_path(@room), class: "btn btn-xs btn-primary" %>
-    <%= link_to "삭제하기", room_path(@room),method: :delete, data: {confirm:"정말 포스팅을 삭제하시겠습니까?"}, class: "btn btn-xs btn-danger"  %>
-  <% end %>
-    <%= link_to "목록으로 돌아가기", rooms_path, class: "btn btn-xs btn-success" %>
+
+
+
+<div class="box alt">
+  <div class="row uniform">
+    <div class="col-sm-4 col-xs-12 center"><span class="image"><%= image_tag @room.image.url(:medium), class:"image-container"%></span></div>
+    <div class="col-sm-4 col-xs-12 center"><span class="image"><%= image_tag @room.image2.url(:medium), class:"image-container"%></span></div>
+    <div class="col-sm-4 col-xs-12 center"><span class="image"><%= image_tag @room.image3.url(:medium), class:"image-container"%></span></div>
+    <div class="col-sm-12 col-xs-12 center"><span class="image"><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@room.latitude},#{@room.longitude}&markers=#{@room.latitude},#{@room.longitude}&zoom=15&size=300x300&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+                class: 'img-rounded', alt: "#{@room.address} on the map"%></span></div>
+  </div>
+  <div class="row uniform">
+    <div class="col-xs-6">
+      <label>성별</label>
+    </div>
+    <div class="col-xs-6">
+      <%= @room.gender %>
+    </div>
+    <div class="col-sm-2">
+      <label>가격</label>
+    </div>
+    <div class="col-sm-10">
+      <%= @room.price %>
+    </div>
+    성별 : <%= @room.gender %><br>
+    가격 : <%=@room.price %> <br>
+    유틸 : <%=@room.utility %> <br>
+    보증금 : <%=@room.deposit %> <br>
+    기간 <%=@room.start_date %> ~ <%= @room.finish_date %> <br>
+    방종류: <%=@room.room_private %> <br>
+    방타입: <%= @room.room_type %> <br>
+    화장실:  <%= @room.bath %> <br>
+    주차: <% if @room.parking %>
+              공간있음
+              <% if @room.parking_fee %>
+                => $<%= @room.parking_fee %>
+              <% end %>
+          <% else%>
+              공간없음
+          <% end%>
+    <br>
+    가구 : <% if @room.furnished %>
+            가구 있음
+          <% else %>
+          가구없음
+          <% end %>
+    <br>
+    <hr>
+    </div>
+  </div>
+    
+    <%= simple_format(@room.description) %>
+    <% if @room.categories.any? %>
+      <p>카테고리: <%= render @room.categories %></p>
+    <% end %>
+    <% if signed_in? && (current_user==@room.user || current_user.admin?) %>
+    <div class="room-actions">
+      <%= link_to "수정하기", edit_room_path(@room), class: "btn btn-xs btn-primary" %>
+      <%= link_to "삭제하기", room_path(@room),method: :delete, data: {confirm:"정말 포스팅을 삭제하시겠습니까?"}, class: "btn btn-xs btn-danger"  %>
+    <% end %>
+      <%= link_to "목록으로 돌아가기", rooms_path, class: "btn btn-xs btn-success" %>
+    </div>
   </div>
 </div>
-
