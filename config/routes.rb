@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :rooms
   resources :pictures
   get '/users/:id' => 'users#show'
-  root 'rooms#show' 
+  root 'rooms#index' 
   
 
   # Example of regular route:

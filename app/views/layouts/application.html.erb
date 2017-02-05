@@ -48,6 +48,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/">벜방</a>
+        
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -69,14 +70,17 @@
           
           <ul class="nav navbar-right col-md-4">
             <% if current_user %>
-              <li class="col-md-3 user-name dropdown">
-                <%= image_tag(current_user.image) %>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><%= current_user.email %><span class="caret"></span></a>
+              <li class="col-md-1">
+                <%= image_tag(current_user.image)%>
+              </li>
+              <li class="col-md-6 user-name dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "프로필 수정하기", edit_user_registration_path %></li>
                   <li><a href= '/users/<%=current_user.id%>' >내 글 목록</a></li>
                 </ul>
               </li>
+              <li class="col-md-1"></li>
               <li class="col-md-4 logout"><%= link_to('로그아웃', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
             <% else %>
               <li class="col-md-4 pull-right">
