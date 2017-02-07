@@ -1,20 +1,24 @@
 <h2 align='center'><%= @room.address %></h2>
 
-<div class="map_canvas"></div>
-
-<script>
-    $(function(){
-      
-      var options = {
-        map: ".map_canvas",
-        location: "NYC"
-      };
-      
-      $('<%= @room.address %>').geocomplete(options);
-      
-    });
-</script>
-
+<div class="row">
+  <div id="map"></div>
+  <script>
+        function initMap() {
+          var uluru = {lat: <%= @room.latitude %>, lng: <%= @room.longitude %>};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: uluru
+          });
+          var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+          });
+        }
+  </script>
+  <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbxwO7cCzPQReu-VRL9C4xGmz-JqKziLI&callback=initMap">
+  </script>
+</div>
 
 <div class="box alt">
   <div class="row uniform">
@@ -78,5 +82,3 @@
   </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbxwO7cCzPQReu-VRL9C4xGmz-JqKziLI" async defer>
-</script>
