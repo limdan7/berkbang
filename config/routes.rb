@@ -9,11 +9,15 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  resources :demands
   resources :categories, except:[:destroy]
   resources :searches
-  resources :rooms
+  resources :rooms do
+    resources :requests
+  end
   resources :pictures
   get '/users/:id' => 'users#show'
+  get '/inbox' => 'users#inbox'
   root 'rooms#index' 
   
 

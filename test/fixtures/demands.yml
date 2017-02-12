@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gender: MyText
+  start_date: 2017-02-11
+  finish_date: 2017-02-11
+  room_private: MyText
+  price: 1
+  description: MyText
+
+two:
+  gender: MyText
+  start_date: 2017-02-11
+  finish_date: 2017-02-11
+  room_private: MyText
+  price: 1
+  description: MyText

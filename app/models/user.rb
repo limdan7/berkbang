@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :rooms, dependent: :destroy
+  has_many :requests
+  has_many :demands, dependent: :destroy
   
   before_save{ self.email = email.downcase}
   # Include default devise modules. Others available are:

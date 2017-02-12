@@ -1,8 +1,6 @@
-<h1 align="center">방 검색하기</h1>
-
 <div class="row">
   <div class="col-xs-12" algin="center">
-    <%= form_for(@search, :html => { multiplart: true, class:"form-horizontal", role:"form"}) do |f| %>
+    <%= form_for(@demand, :html => { multiplart: true, class:"form-horizontal", role:"form"}) do |f| %>
 
     <div class="form-group">
       <div class="control-label col-xs-2">
@@ -10,10 +8,10 @@
       </div>
       <div class="col-xs-5 btn-group" data-toggle="buttons">
         <label class="btn btn-custom">
-          <%= radio_button("search","gender","남자")%> 남자  
+          <%= radio_button("demand","gender","남자")%> 남자  
         </label>
         <label class="btn btn-custom">
-          <%= radio_button("search","gender","여자")%> 여자
+          <%= radio_button("demand","gender","여자")%> 여자
         </label>
       </div>
     </div>
@@ -47,19 +45,29 @@
       </div>
      <div class="col-md-4 col-xs-10 btn-group" data-toggle="buttons">
         <label class="btn btn-custom">
-          <%= radio_button("search","room_private","혼자 쓰는 방")%> 혼자 쓰는방
+          <%= radio_button("demand","room_private","혼자 쓰는 방")%> 혼자 쓰는방
         </label>
         <label class="btn btn-custom">
-          <%= radio_button("search","room_private","나눠 쓰는 방")%> 나눠 쓰는방
+          <%= radio_button("demand","room_private","나눠 쓰는 방")%> 나눠 쓰는방
         </label>
         <label class="btn btn-custom">
-          <%= radio_button("search","room_private","집 전체")%> 집 전체
+          <%= radio_button("demand","room_private","집 전체")%> 집 전체
         </label>
       </div>
     </div>
     <div class="form-group">
+      <div class="control-label col-xs-2">
+        <%= f.label '내용용' %>
+      </div>
+      <div class="col-xs-8">
+        <div>
+          <%= f.text_area :description, class:"form-control",placeholder:"자기소개 및 내용", autofocus: true%>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
       <div class="col-xs-offset-2 col-xs-4">
-        <%= f.submit '검색하기', class: 'btn btn-custom' %>
+        <%= f.submit '등록하기', class: 'btn btn-custom' %>
       </div>
       <div class="col-xs-offset-2">
         <%= link_to "방 목록으로 돌아가기", rooms_path, class:"btn btn-custom"%>

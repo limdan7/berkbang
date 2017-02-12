@@ -1,5 +1,7 @@
 class Room < ActiveRecord::Base
   has_many :room_categories
+  has_many :requests, dependent: :destroy
+  
   has_many :categories,through: :room_categories
   
   has_attached_file :image, :styles => {large: "600x600>", medium: "300x300>", thumb: "150x150#"}

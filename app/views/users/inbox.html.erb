@@ -1,0 +1,8 @@
+<% current_user.rooms.each do |room|%>
+  <% room.requests.each do |i| %>
+    <%= i.start_date%>
+    <%= i.finish_date%>
+    <%= i.description %>
+    <br>
+  <% end %>
+<% end %>

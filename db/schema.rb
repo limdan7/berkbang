@@ -11,12 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206222630) do
+ActiveRecord::Schema.define(version: 20170211210742) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "demands", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "gender"
+    t.date     "start_date"
+    t.date     "finish_date"
+    t.text     "room_private"
+    t.integer  "price"
+    t.text     "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -30,6 +49,16 @@ ActiveRecord::Schema.define(version: 20170206222630) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "room_token"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "room_id"
+    t.integer  "user_id"
+    t.string   "description"
+    t.date     "start_date"
+    t.date     "finish_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "room_categories", force: :cascade do |t|
