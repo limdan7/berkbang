@@ -16,6 +16,11 @@ class RequestsController < ApplicationController
     end
   end
   
+  def show
+    @room = Room.find(params[:room_id])
+    @request = Requests.find(params[:request_id])
+  end
+  
   private
   
   def request_params

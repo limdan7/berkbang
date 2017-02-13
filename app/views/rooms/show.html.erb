@@ -72,9 +72,6 @@
     <% if @room.categories.any? %>
       <p>카테고리: <%= render @room.categories %></p>
     <% end %>
-    <% if signed_in? && (current_user==@room.user || current_user.admin?) %>
-
-
     <div>
       <h2>연락하기</h2>
       <%= form_for [@room, Request.new] do |f| %>
@@ -84,7 +81,7 @@
       <% end %>
     </div>    
     
-    
+    <% if signed_in? && (current_user==@room.user || current_user.admin?) %>
     <div class="room-actions">
       <%= link_to "수정하기", edit_room_path(@room), class: "btn btn-xs btn-primary" %>
       <%= link_to "삭제하기", room_path(@room),method: :delete, data: {confirm:"정말 포스팅을 삭제하시겠습니까?"}, class: "btn btn-xs btn-danger"  %>

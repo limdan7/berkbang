@@ -91,7 +91,8 @@
                 <ul class="dropdown-menu">
                   <li><a href= '/inbox'>쪽지함(<%= request%>)</a></li>
                   <li><%= link_to "프로필 수정하기", edit_user_registration_path %></li>
-                  <li><a href= '/users/<%=current_user.id%>' >내 글 목록</a></li>
+                  <li><a href= '/users/<%=current_user.id%>' >내 방 목록</a></li>
+                  <li><a href= '/users/<%=current_user.id%>' >방 구하기 목록</a></li>
                 </ul>
               </li>
               <li class="col-md-1"></li>
