@@ -1,28 +1,40 @@
-<h1 align="center">전체 방 구하는 포스팅</h1>
-
-<div id="main">
-	
-	<div class="inner">
-		
-		<section class="tiles">
-			
-		  <% @demands.each do |demand| %>
-		  
-  			<article>
-  				
-  				<a href=<%= demand_path(demand) %>>링크</a>
-  					
-  					<h2><%= demand.gender %><br>
-  					     $<%= demand.price %><br>
-  					</h2> <link rel="stylesheet" type="text/css" href="theme.css">
-  					<div class="content">
-  						<p>기간 : <%= demand.start_date.to_s.at(5..6)%>월 <%= demand.start_date.to_s.at(0..3)%> 
-  						~<%= demand.finish_date.to_s.at(5..6)%>월 <%= demand.finish_date.to_s.at(0..3)%></p>
-  					</div>
-  				
-  			</article>
-      <% end %>
-		</section>
-		
-	</div>
+<div class="row">
+  <div class="col-lg-12">
+      <h1 class="page-header">전체 목록</h1>
+  </div>
 </div>
+
+<% @demands.each do |demand| %>
+	
+	<% if demand.gender == "남자" %>
+		<a href=<%= demand_path(demand) %> class="a_demand">
+			<div class="col-sm-4">
+			  <div class="panel panel-info">
+			    <div class="panel-heading">
+			      <h3 class="panel-title">남자</h3>
+			    </div>
+			    <div class="panel-body">
+			      <p>최대가격 : $<%= demand.price %></p>
+			      <p>기간 : <%= demand.start_date.to_s.at(5..6)%>월 <%= demand.start_date.to_s.at(0..3)%> 
+  						~<%= demand.finish_date.to_s.at(5..6)%>월 <%= demand.finish_date.to_s.at(0..3)%></p>
+			    </div>
+			  </div>
+			</div><!-- /.col-sm-4 -->
+		</a>
+	<% else %>
+		<a href=<%= demand_path(demand) %> class="a_demand">	 
+			<div class="col-sm-4">
+			  <div class="panel panel-danger">
+			    <div class="panel-heading">
+			      <h3 class="panel-title">여자</h3>
+			    </div>
+			    <div class="panel-body">
+			      <p>최대가격 : $<%= demand.price %></p>
+			      <p>기간 : <%= demand.start_date.to_s.at(5..6)%>월 <%= demand.start_date.to_s.at(0..3)%> 
+  						~<%= demand.finish_date.to_s.at(5..6)%>월 <%= demand.finish_date.to_s.at(0..3)%></p>
+			    </div>
+			  </div>
+			</div><!-- /.col-sm-4 -->
+		</a>
+	<% end %>
+<% end %>

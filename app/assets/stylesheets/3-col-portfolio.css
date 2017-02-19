@@ -1,0 +1,94 @@
+/*!
+ * Start Bootstrap - 3 Col Portfolio (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+ 
+a.room-link:hover{
+    text-decoration: none;
+    color:black;
+}
+
+a.room-link{
+ 
+    color:black;
+}
+.well {
+    background-color: white;
+    padding:0px;
+    border-radius: 10px;
+}
+
+.room-item {
+    margin-bottom: 30px;
+}
+
+.well:hover {
+    border-color: #999999;
+}
+
+.thumbnail { 
+    position: relative; 
+    padding-top: 70%; /* 1:1 ratio */ 
+    padding-bottom: 0px;
+    margin-bottom:0px;
+    overflow: hidden; 
+    background-color: white;
+    border-color: white;
+    border-radius: 10px;
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+}
+
+
+.img-custom { 
+
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    width: 100%;
+    height: 200px; 
+    overflow: hidden;
+
+}
+
+
+
+footer {
+    margin: 50px 0;
+}
+
+.card-block {
+    position: relative;
+}
+.card-price {
+    position: absolute;
+    top: -42px;
+    left: 20px;
+    width: 100px;
+    background-color: gray;
+    border: 4px solid white;
+    border-radius: 5px;
+    font-size: 20px;
+    color:white;
+    text-align: center;
+}
+
+
+.card-contents{
+ 
+}
+
+.card-private {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left:20px;
+}
+
+.card-duration {
+    font-size: 18px;
+    margin-left: 20px;
+    margin-bottom :20px;
+}

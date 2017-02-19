@@ -5,7 +5,7 @@
 </script>
 
 <div class="row">
-  <div class="col-xs-12" algin="center">
+  <div class="col-xs-12">
     <%= form_for(@room, :html => { multiplart: true, class:"form-horizontal", role:"form"}) do |f| %>
     <div class="form-group">
       <div class="control-label col-md-2 col-xs-2">
@@ -173,10 +173,10 @@
         </div>
     </div>
     <div class="form-group">
-      <div class="col-xs-offset-2 col-xs-4">
+      <div class="col-xs-offset-2 col-xs-3">
         <%= f.submit '작성완료', class: 'btn btn-custom' %>
       </div>
-      <div class="col-xs-offset-2">
+      <div class="col-xs-offset-1">
         <%= link_to "방 목록으로 돌아가기", rooms_path, class:"btn btn-custom"%>
       </div>
     </div>

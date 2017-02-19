@@ -1,10 +1,14 @@
-<h1 align="center">전체 방 목록</h1>
+<div class="row">
+  <div class="col-lg-12">
+      <h1 class="page-header">전체 방 목록</h1>
+  </div>
+</div>
 
 <div align="center">
   <%= will_paginate %>
 </div>
 
-<%= render 'room_new', obj: @rooms %>
+<%= render 'room', obj: @rooms %>
 
 <div align="center">
   <%= will_paginate %>

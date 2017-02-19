@@ -1,33 +1,29 @@
 <% obj.each_slice(3) do |room| %>
   <div class="row">
-     <% room.each do |room| %>
-        <div class="col-xs-4">
-          <a href=<%= room_path(room) %>>
-          <div class="well well-lg">
-            <%= image_tag room.image.url(:medium)%><br>
-            <h4 align="center"><%= room.address %></h4>
-            [가격: <strong>$<%= room.price%></strong>][기간: <strong><%= room.start_date%> ~ <%= room.finish_date%></strong>]
-            <% if room.categories.any? %>
-              <%= render room.categories %>}
-            <% end %>
-            <div class="room-body">
-              <%= truncate(room.description, length: 30) %>
-              <%= link_to "포스팅 보기", room_path(room), class: "btn btn-custom", role:"button"%>
-              
-              <div class="room-meta-details">
-                <small><%= room.user.name if room.user%> 작성: <%=time_ago_in_words(room.created_at) %>, 수정: <%= time_ago_in_words(room.updated_at) %> </small>
+       <% room.each do |room| %>
+        <div class="col-md-4 room-item">
+          <a href=<%= room_path(room) %> class="room-link" target="blank">
+            <div class="well">
+              <div class="thumbnail">
+                <%= image_tag room.image.url(:medium), class:"img-custom", alt:"room image"%>
               </div>
-            </div> 
-            <% if signed_in? && (current_user==room.user || current_user.admin?)%>
-            <div class="room-actions">
-              <%= link_to "수정하기", edit_room_path(room), class: "btn btn-xs btn-primary" %>
-              <%= link_to "글 삭제하기", room_path(room), method: :delete, data:{confirm:"정말 삭제하시겠습니까?"}, class: "btn btn-xs btn-danger" %>
+              <div class='card-block'>
+                <div class="card-price"> 
+                  <span>$<%= room.price%></span>
+                </div>
+                <div class="card-private card-contents">
+                  <%= room.room_private %>
+                </div>
+                <div class="card-duration card-contents">
+                  <% start = room.start_date.to_s.split('-') %>
+                  <% finish = room.finish_date.to_s.split('-') %>
+                  <span><strong><%=start[0]%>년 <%= start[1]%>월 <%= start[2]%>일</strong> - <strong> <%= finish[0] if  start[0] != finish[0]%> <%= finish[1]%>월 <%= finish[2]%>일</strong></strong></span>
+                </div>
+              </div>
             </div>
-            <% end %>
-          </div>
           </a>
         </div>
-    <% end %>     
+    <%end%>     
   </div>
 <% end %>
 

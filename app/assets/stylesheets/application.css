@@ -15,8 +15,5 @@
  *= require_tree .
  *= require_self
  *= require jquery-ui
- *= require font-awesome.min
- *= require ie8
- *= require ie9
- *= require main
+ *= require 3-col-portfolio
  */

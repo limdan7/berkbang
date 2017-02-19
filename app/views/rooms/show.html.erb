@@ -1,8 +1,149 @@
-<h2 align='center'><%= @room.address %></h2>
+<h1 class="show-title" align='center'><%= @room.address %></h2>
 
 <div class="row">
-  <div id="map"></div>
-  <script>
+  <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill"><%= image_tag @room.image.url(:medium), class:"image-container"%></div>
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill"><%= image_tag @room.image2.url(:medium), class:"image-container"%></div>
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                 <div class="fill"><%= image_tag @room.image3.url(:medium), class:"image-container"%></div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+</div>
+<div class="col-md-8 col-md-offset-2">
+  <table class="table">
+    <tr>
+      <th class="small col-md-2">성별</th>
+      <td class="col-md-2 "><%= @room.gender %></td>
+    </tr>
+    <tr>
+      <th class="small col-md-2">가격/유틸/보증금</th>
+      <td class="col-md-2">$<%= @room.price %>/Month</td>
+      <td class="col-md-2">$<%= @room.utility %>/Month</td>
+      <td class="col-md-2">$<%= @room.utility %>/Month</td>
+    </tr>
+    <tr>
+      <th class="small col-md-2">기간</th>
+      <td class="col-md-2">시작: <%= @room.start_date %></td>
+      <td class="col-md-2">종료: <%= @room.finish_date %></td>
+    </tr>
+    <tr>
+      <th class="small col-md-2">방종류</th>
+      <td class="col-md-2"><%= @room.room_private %></td>
+      <td class="col-md-2"><%= @room.room_type %></td>
+      <td class="col-md-2">화장실 <%= @room.bath %></td>
+    </tr>
+    <tr>
+      <th class="small col-md-2">주차공간</th>
+      <% if @room.parking %>
+      <td class="col-md-2">공간있음</td>
+      <td class="col-md-2">$<%= @room.parking_fee if @room.parking_fee %></td>
+      <% else %>
+      <td class="col-md-2">공간없음</td>
+      <% end %>
+    </tr>
+    <tr>
+      <th class="small col-md-2">가구</th>
+      <% if @room.furnished %>
+        <td class="col-md-2">가구있음</td>
+      <% else %>
+        <td class="col-md-2">가구없음</td>
+      <%end%>
+    </tr>
+    <tr>
+      <th class="small col-md-2">카테고리</th>
+      <% if @room.categories.any? %>
+      <td class="col-md-2"><%= render @room.categories %></td>
+      <% end %>
+    </tr>
+  </table>
+</div>
+<div class="col-md-8 col-md-offset-2">
+  <div class="well">
+      <%= @room.description %>
+    </tr>
+  </div>
+</div>
+<div id="map"></div>
+
+<form>
+  <h2 class="col-md-offset-3">연락하기</h2>
+  <%= form_for [@room, Request.new] do |f| %>
+  <div class="form-group">
+      <div class="row">
+        <div class="control-label col-md-1 col-md-offset-3">
+          <%= f.label '시작일' %>
+        </div>
+        <div class="col-md-4">
+            <%= f.date_field :start_date, class:"form-control"%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="control-label col-md-1 col-md-offset-3">
+          <%= f.label '종료일' %>
+        </div>
+        <div class="col-md-4">
+            <%= f.date_field :finish_date, class:"form-control"%>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+        <div class="control-label col-md-6 col-md-offset-3">
+          <%= f.label '내용' %>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+          <%= f.text_area :description, class:'form-control', rows:'4' %>
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="control-label col-md-offset-3 col-md-4">
+        <%= f.submit '메세지 보내기', class:"btn btn-custom"%>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <% if signed_in? && (current_user==@room.user || current_user.admin?) %>
+      <div class="col-md-offset-3 col-md-6 room-actions">
+        <%= link_to "수정하기", edit_room_path(@room), class: "btn btn-xs btn-primary" %>
+        <%= link_to "삭제하기", room_path(@room),method: :delete, data: {confirm:"정말 포스팅을 삭제하시겠습니까?"}, class: "btn btn-xs btn-danger"  %>
+    <% end %>
+          <%= link_to "목록으로 돌아가기", rooms_path, class: "btn btn-xs btn-success" %>
+      </div>
+  </div>
+    <% end %>
+  </div>
+  
+</form>
+  
+
+
+<script>
         function initMap() {
           var uluru = {lat: <%= @room.latitude %>, lng: <%= @room.longitude %>};
           var map = new google.maps.Map(document.getElementById('map'), {
@@ -14,80 +155,7 @@
             map: map
           });
         }
-  </script>
-  <script async defer
+</script>
+<script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbxwO7cCzPQReu-VRL9C4xGmz-JqKziLI&callback=initMap">
-  </script>
-</div>
-
-<div class="box alt">
-  <div class="row uniform">
-    <div class="col-sm-4 col-xs-12 center"><span class="image"><%= image_tag @room.image.url(:medium), class:"image-container"%></span></div>
-    <div class="col-sm-4 col-xs-12 center"><span class="image"><%= image_tag @room.image2.url(:medium), class:"image-container"%></span></div>
-    <div class="col-sm-4 col-xs-12 center"><span class="image"><%= image_tag @room.image3.url(:medium), class:"image-container"%></span></div>
-  </div>
-  
-  <div class="row uniform">
-    <div class="col-xs-6">
-      <label>성별</label>
-    </div>
-    <div class="col-xs-6">
-      <%= @room.gender %>
-    </div>
-    <div class="col-sm-2">
-      <label>가격</label>
-    </div>
-    <div class="col-sm-10">
-      <%= @room.price %>
-    </div>
-  
-    성별 : <%= @room.gender %><br>
-    가격 : <%=@room.price %> <br>
-    유틸 : <%=@room.utility %> <br>
-    보증금 : <%=@room.deposit %> <br>
-    기간 <%=@room.start_date %> ~ <%= @room.finish_date %> <br>
-    방종류: <%=@room.room_private %> <br>
-    방타입: <%= @room.room_type %> <br>
-    화장실:  <%= @room.bath %> <br>
-    주차: <% if @room.parking %>
-              공간있음
-              <% if @room.parking_fee %>
-                => $<%= @room.parking_fee %>
-              <% end %>
-          <% else%>
-              공간없음
-          <% end%>
-    <br>
-    가구 : <% if @room.furnished %>
-            가구 있음
-          <% else %>
-          가구없음
-          <% end %>
-    <br>
-    
-    </div>
-  </div>
-    
-    <%= simple_format(@room.description) %>
-    <% if @room.categories.any? %>
-      <p>카테고리: <%= render @room.categories %></p>
-    <% end %>
-    <div>
-      <h2>연락하기</h2>
-      <%= form_for [@room, Request.new] do |f| %>
-      시작일 <%= f.date_field :start_date%> 종료일 <%= f.date_field :finish_date%>
-      <%= f.text_area :description, placeholder: "내용" %>
-      <%= f.submit "메세지 보내기" %>
-      <% end %>
-    </div>    
-    
-    <% if signed_in? && (current_user==@room.user || current_user.admin?) %>
-    <div class="room-actions">
-      <%= link_to "수정하기", edit_room_path(@room), class: "btn btn-xs btn-primary" %>
-      <%= link_to "삭제하기", room_path(@room),method: :delete, data: {confirm:"정말 포스팅을 삭제하시겠습니까?"}, class: "btn btn-xs btn-danger"  %>
-    <% end %>
-      <%= link_to "목록으로 돌아가기", rooms_path, class: "btn btn-xs btn-success" %>
-    </div>
-  </div>
-</div>
-
+</script>
