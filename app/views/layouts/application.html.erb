@@ -119,6 +119,14 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <p>
+                                            <%= link_to('메세지함', inbox_path, class: 'btn btn-block btn-blank') %>
+                                            <a href="/users/<%= current_user.id %>" class= "btn btn-block btn-blank">내 포스팅</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
                                             <%= link_to('로그아웃', destroy_user_session_path, class: 'btn btn-block btn-danger', title: 'Logout', :method => :delete) %>
                                         </p>
                                     </div>
