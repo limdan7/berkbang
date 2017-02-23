@@ -8,7 +8,11 @@
                 <%= image_tag room.image.url(:medium), class:"img-custom", alt:"room image"%>
               </div>
               <div class='card-block'>
-                <div class="card-price"> 
+                <% if room.gender == "여자"%>
+                  <div class="card-price-female">
+                <% else%>
+                  <div class="card-price-male">
+                <% end %> 
                   <span>$<%= room.price%></span>
                 </div>
                 <div class="card-private card-contents">

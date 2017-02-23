@@ -8,7 +8,7 @@
     <%= csrf_meta_tags %>
     
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
@@ -43,6 +43,8 @@
         
   </head>
   <body>
+    
+    
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -80,28 +82,61 @@
             </li>
           </ul>
           
-          <ul class="nav navbar-right col-md-4">
-            <% if current_user %>
-              <li class="col-md-1">
-                <%= image_tag(current_user.image)%>
-              </li>
-              <li class="col-md-6 user-name dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href= '/inbox'>쪽지함(<%= request%>)</a></li>
-                  <li><%= link_to "프로필 수정하기", edit_user_registration_path %></li>
-                  <li><a href= '/users/<%=current_user.id%>' >내 방 목록</a></li>
-                  <li><a href= '/users/<%=current_user.id%>' >방 구하기 목록</a></li>
+          
+                <% if current_user %>
+                <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <strong><%= current_user.name%></strong>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <% if current_user.image %>
+                                              <img src="<%= current_user.image%>" class="icon-size" alt="pic">
+                                            <% else %>
+                                              <img src="<%= current_user.avatar %>" class="icon-size", alt="pic">
+                                            <% end %>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong><%= current_user.name %></strong></p>
+                                        <p class="text-left small"><%= current_user.email %></p>
+                                        <p class="text-left">
+                                            <a href="<%= edit_user_registration_path %>" class="btn btn-primary btn-block btn-sm">프로필 수정하기</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            <%= link_to('로그아웃', destroy_user_session_path, class: 'btn btn-block btn-danger', title: 'Logout', :method => :delete) %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
                 </ul>
-              </li>
-              <li class="col-md-1"></li>
-              <li class="col-md-4 logout"><%= link_to('로그아웃', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
-            <% else %>
-              <li class="col-md-4 pull-right">
-                <%= link_to('로그인', new_user_session_path, class: 'btn btn-primary', title: '로그인') %>
-              </li>
-            <% end %>
-          </ul>
+                <% else %>
+                <ul class="nav navbar-right col-md-4">
+                  <li class="col-md-4 pull-right">
+                    <%= link_to('로그인', new_user_session_path, class: 'btn btn-primary', title: '로그인') %>
+                  </li>
+                </ul>
+                <% end %>
+            
+        
         </div>
       </div>
     </div>
