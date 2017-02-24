@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
+  get 'mailbox/inbox' => 'mailbox#inbox', as: :mailbox_inbox
+  get 'mailbox/trash' => 'mailbox#trash', as: :mailbox_trash
+  get 'mailbox/sent' => 'mailbox#sent', as: :mailbox_sent
+
   devise_for :users, :controllers => {
     :omniauth_callbacks => "users/omniauth_callbacks"}
-    
+  
+  
+  resources :conversations do 
+    member do 
+      post :reply
+      post :trash
+      post :untrash
+    end
+  end
   # devise_for :users, :controllers => { :registrations: 'users/registrations' }
   
   # The priority is based upon order of creation: first created -> highest priority.

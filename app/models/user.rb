@@ -12,6 +12,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
   
+  acts_as_messageable
+  
+  def mailboxer_name
+    self.name
+  end
+  
+  def mailboxer_email(object)
+    self.email
+  end
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

@@ -1,0 +1,17 @@
+<div class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object" src="https://placehold.it/64x64" alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= conversation.originator.name %> <br>
+      <small><strong>제목:</strong> <%= conversation.subject %></small><br>
+      <small><strong>작성날짜:</strong> <%= conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p")%></small>
+    </h4>
+    <%= truncate conversation.messages.last.body, length: 145 %>
+    <%= link_to '보기', conversation_path(conversation) %>
+  </div>
+</div>
+

@@ -1,9 +1,37 @@
-<% current_user.rooms.each do |room|%>
-  <% room.requests.each do |request| %>
-  
-    <%= request.start_date%>
-    <%= request.finish_date%>
-    <%= request.description %>
-    <br>
-  <% end %>
-<% end %>
+    <div class="container content">
+    <div class="row">
+      <% current_user.rooms.each do |room|%>
+        <% room.requests.each do |request| %>
+        <div class="col-md-6">
+            <div class="testimonials">
+            	<div class="active item">
+                  <blockquote><p><%= request.description %></p></blockquote>
+                  <div class="carousel-info">
+                    <% if User.find(request.user_id).image %>
+                      <img alt="" src="<%= User.find(request.user_id).image %>" class="pull-left">                    
+                    <% else %>
+                      <img alt="" src="<%= User.find(request.user_id).avatar %>" class="pull-left">
+                    <% end %>
+                    <div class="pull-left">
+                      <span class="testimonials-name"><%= User.find(request.user_id).name %></span>
+                      <span class="testimonials-post">일정 : <%= request.start_date%> ~ <%= request.finish_date%></span>
+                      <div class="row">
+                        <% if signed_in? && (current_user==room.user || current_user.admin?) %>
+                          <div class="col-md-6 room-actions">
+                            <a href="/rooms/<%= room.id%>/requests/<%= request.id%>" method="delete" data={confirm: "정말 삭제?"} class="btn btn-xs btn-danger">삭제하기</a>
+                        <% end %>
+                          </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+            
+      <% end %>
+    <% end %>
+
+    </div>
+</div>
+

@@ -18,7 +18,16 @@ class RequestsController < ApplicationController
   
   def show
     @room = Room.find(params[:room_id])
-    @request = Requests.find(params[:request_id])
+    @request = @room.requests.find(params[:id])
+  end
+  
+
+  def destroy
+    @room = Room.find(params[:room_id])
+    @request = @room.requests.find(params[:id])
+    @request.destroy
+    flash[:notice] = "메세지가 삭제되었습니다."
+    redirect_to inbox_path
   end
   
   private
