@@ -413,8 +413,44 @@ th {
 
 .spacer {
   padding-bottom : 15px;
+   clear: both;
 }
 
 .text-right {
   text-align: right;
+ 
+}
+
+.media-object {
+  width : 64px;
+  height : 64px;
+  border-radius : 32px;
+}
+
+.media {
+  padding : 5px;
+  border : 2px solid #eaeaea;
+  border-radius: 5px;
+}
+
+.media:hover {
+  border-color: gray;
+}
+.conversation_link {
+  color: #666666;
+}
+.conversation_link:hover {
+  text-decoration: none;
+  color: #333333;
+}
+
+.contact-image{
+  width: 300px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.form-price {
+  background-color: #eaeaea;
+  border-radius: 2px;
 }

@@ -23,6 +23,7 @@ class RoomsController < ApplicationController
   end
   
   def show
+
   end
   
   def edit
@@ -53,6 +54,8 @@ class RoomsController < ApplicationController
       params.require(:room).permit(:address, :description,:price, :start_date, :finish_date, :bath, :image, :image2, :image3,
       :room_private,:room_type,:utility,:parking,:parking_fee,:deposit,:gender, :furnished,:furnished_details,category_ids: [])
     end
+    
+
     
     def require_same_user
       if current_user != @room.user and !current_user.admin?

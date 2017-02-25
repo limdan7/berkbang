@@ -90,57 +90,25 @@
   </div>
 </div>
 <div id="map"></div>
-
-<form>
-  <h2 class="col-md-offset-3">연락하기</h2>
-  <%= form_for [@room, Request.new] do |f| %>
-  <div class="form-group">
-      <div class="row">
-        <div class="control-label col-md-1 col-md-offset-3">
-          <%= f.label '시작일' %>
-        </div>
-        <div class="col-md-4">
-            <%= f.date_field :start_date, class:"form-control"%>
-        </div>
-      </div>
-      <div class="row">
-        <div class="control-label col-md-1 col-md-offset-3">
-          <%= f.label '종료일' %>
-        </div>
-        <div class="col-md-4">
-            <%= f.date_field :finish_date, class:"form-control"%>
-        </div>
-      </div>
+  <div class="col-md-offset-3 col-md-6">
+    <div class="spacer"></div>
+    <form action="/conversations/new" method="get">
+      <input type="hidden" name="room" value=<%= @room.id%>>
+      <input type="submit" value="연락하기" class="btn btn-success btn-lg">
+    </form>
+    <div class="spacer"></div>
   </div>
-  <div class="row">
-    <div class="form-group">
-        <div class="control-label col-md-6 col-md-offset-3">
-          <%= f.label '내용' %>
-        </div>
-        <div class="col-md-6 col-md-offset-3">
-          <%= f.text_area :description, class:'form-control', rows:'4', placeholder: "연락방법(전화번호, 이메일) 등을 적으세요." %>
-        </div>
-    </div>
-    <div class="form-group">
-      <div class="control-label col-md-offset-3 col-md-4">
-        <%= f.submit '메세지 보내기', class:"btn btn-custom"%>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <% if signed_in? && (current_user==@room.user || current_user.admin?) %>
-      <div class="col-md-offset-3 col-md-6 room-actions">
-        <%= link_to "수정하기", edit_room_path(@room), class: "btn btn-xs btn-primary" %>
-        <%= link_to "삭제하기", room_path(@room),method: :delete, data: {confirm:"정말 포스팅을 삭제하시겠습니까?"}, class: "btn btn-xs btn-danger"  %>
-    <% end %>
-          <%= link_to "목록으로 돌아가기", rooms_path, class: "btn btn-xs btn-success" %>
-      </div>
-  </div>
-    <% end %>
-  </div>
-  
 </form>
-  
+
+        <div class="col-md-offset-3 col-md-6 room-actions">
+    <% if signed_in? && (current_user==@room.user || current_user.admin?) %>
+      
+        <%= link_to "수정하기", edit_room_path(@room), class: "btn btn-md btn-primary" %>
+        <%= link_to "삭제하기", room_path(@room),method: :delete, data: {confirm:"정말 포스팅을 삭제하시겠습니까?"}, class: "btn btn-m btn-danger"  %>
+    <% end %>
+          <%= link_to "목록으로 돌아가기", rooms_path, class: "btn btn-md btn-success" %>
+        </div>
+
 
 
 <script>

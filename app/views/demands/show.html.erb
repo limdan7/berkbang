@@ -1,13 +1,47 @@
-<p>성별 : <%= @demand.gender %></p>
-<p>설명 : <%= @demand.description %></p>
-<p>가격 : <%= @demand.price %></p>
-<p>기간 : <%= @demand.start_date %> ~ <%= @demand.start_date %></p>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+  <table class="table">
+    <tr>
+      <th class="small col-md-2">성별</th>
+      <td class="col-md-2 "><%= @demand.gender %></td>
+    </tr>
+    <tr>
+      <th class="small col-md-2">최대가격</th>
+      <td class="col-md-2">$<%= @demand.price %>/Month</td>
+    </tr>
+    <tr>
+      <th class="small col-md-2">기간</th>
+      <td class="col-md-2">시작: <%= @demand.start_date %></td>
+      <td class="col-md-2">종료: <%= @demand.finish_date %></td>
+    </tr>
+  </table>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+  <div class="well">
+      <%= @demand.description %>
+    </tr>
+  </div>
+</div>
+</div>
 
+<div class="col-md-6 col-md-offset-3">
+  <div class="spacer"></div>
+  <form action="/conversations/new" method="get">
+    <input type="hidden" name="demand" value=<%= @demand.id%>>
+    <input type="submit" value="연락하기" class="btn btn-success btn-md">
+  </form>
+  <div class="spacer"></div>
+</div>
 
-<div class="room-actions">
-  <% if signed_in? && (current_user.id==@demand.user_id || current_user.admin?) %>
-    <%= link_to "수정하기", edit_demand_path(@demand), class: "btn btn-xs btn-primary" %>
-    <%= link_to "삭제하기", demand_path(@demand),method: :delete, data: {confirm:"정말 포스팅을 삭제하시겠습니까?"}, class: "btn btn-xs btn-danger"  %>
-  <% end %>
-    <%= link_to "목록으로 돌아가기", demands_path, class: "btn btn-xs btn-success" %>
+<div class="col-md-6 col-md-offset-3">
+  
+  <div class="room-actions">
+    <% if signed_in? && (current_user.id == @demand.user_id || current_user.admin?) %>
+      <%= link_to "수정하기", edit_demand_path(@demand), class: "btn btn-xs btn-primary" %>
+      <%= link_to "삭제하기", demand_path(@demand),method: :delete, data: {confirm:"정말 포스팅을 삭제하시겠습니까?"}, class: "btn btn-xs btn-danger"  %>
+    <% end %>
+      <%= link_to "목록으로 돌아가기", demands_path, class: "btn btn-xs btn-success" %>
+  </div>
 </div>

@@ -1,18 +1,31 @@
+<h1>연락하기</h1>
 <%= form_for :conversation, url: :conversations, html: {class: ""} do |f| %>
-  <div class="form-group">
-    <%= f.label :recipients %>
-    <%= f.select(:recipients, User.all.collect {|p| [ p.name, p.id]}, {}, {multiple: true, class: "form-control"})%>
-  </div>
+  
+  <% if params[:room] %>
+    <div class="form-group">
+      <%= f.hidden_field :recipients, value: Room.find(params[:room]).user_id%>
+    </div>
+    <h3><%= Room.find(params[:room]).address %> <span class="form-price">$<%= Room.find(params[:room]).price %></span></h3>
+    <%= image_tag Room.find(params[:room]).image.url(:medium), class:"contact-image"%>
+    
+  <% else %>
+    <div class="form-group">
+      <%= f.hidden_field :recipients, value: Demand.find(params[:demand]).user_id%>
+    </div>
+  <% end %>
   
   <div class="form-group">
-    <%= f.label :subject %>
-    <%= f.text_field :subject, placeholder: "Subject", class: "form-control" %>
+    <% if params[:room] %>
+      <%= f.hidden_field :subject, value: room_path(Room.find(params[:room]))%>
+    <% else %>
+      <%= f.hidden_field :subject, value: demand_path(Demand.find(params[:demand]))%>
+    <% end %>
   </div>
   
   <div class="form-group">
     <%= f.label :message %>
-    <%= f.text_area :body, class: 'form-control', placeholder: "메세지를 적어주세요", rows: 4 %>
+    <%= f.text_area :body, class: 'form-control', placeholder: "메세지를 적어주세요. 원하는 기간 등", rows: 4 %>
   </div>
   
-  <%= f.submit "메세지 보내기", class: "btn btn-sucess" %>
+  <%= f.submit "메세지 보내기", class: "btn btn-success" %>
 <% end %>

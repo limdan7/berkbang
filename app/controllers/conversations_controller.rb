@@ -42,7 +42,7 @@ class ConversationsController < ApplicationController
   end
   
   def conversation_params
-    params.require(:conversation).permit(:subject, :body, recipients: [])
+    params.require(:conversation).permit(:subject, :body, :recipients)
   end
 end
 
