@@ -9,7 +9,10 @@
   <%= will_paginate @user_rooms%>
 </div>
 
+<h2 class="page-header">판매 목록</h2>
 <%= render 'rooms/room', obj: @user.rooms %>
+<h2 class="page-header">구매 목록</h2>
+<%= render 'demands/demands', obj: @user.demands %>
 
 <div align="center">
   <%= will_paginate @user_rooms%>

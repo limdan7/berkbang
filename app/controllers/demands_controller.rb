@@ -7,13 +7,19 @@ class DemandsController < ApplicationController
   end
   
   def create
-    @demand = Demand.create(demand_params)
+    @demand = Demand.new(demand_params)
     @demand.user_id = current_user.id
-    if @demand.save
-      flash[:notice] = "포스트가 성공적으로 등록되었습니다."
-      redirect_to demand_path(@demand)
-    else
+    
+    if (User.find(@demand.user_id).demands.count >= 2)
+      flash[:danger] = "포스팅을 두 개 이상 등록하지 못합니다."
       render 'new'
+    else
+      if @demand.save
+        flash[:notice] = "포스트가 성공적으로 등록되었습니다."
+        redirect_to demand_path(@demand)
+      else
+        render 'new'
+      end
     end
   end
   
