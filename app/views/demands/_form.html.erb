@@ -1,5 +1,5 @@
 <%= render 'shared/errors', obj: @demand %>
-<div class="row">
+<div class="row price-font">
   <div class="col-xs-12" algin="center">
     <%= form_for(@demand, :html => { multiplart: true, class:"form-horizontal", role:"form"}) do |f| %>
 
@@ -33,7 +33,7 @@
       <div class="control-label col-xs-2">
         <%= f.label '최대가격' %>
       </div>
-      <div class="col-xs-4">
+      <div class="col-xs-6">
         <div class="input-group">
           <span class="input-group-addon price-margin">$</span></span>
           <%= f.number_field :price, class:"form-control",placeholder:"월세", autofocus: true%>

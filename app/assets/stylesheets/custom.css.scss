@@ -454,3 +454,22 @@ th {
   background-color: #eaeaea;
   border-radius: 2px;
 }
+
+@media screen and (max-width: 400px) {
+.price-font {
+  font-size: 7px;
+}
+}
+
+.side-10 {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.nav-top {
+  background-color: #eeeeee;
+  margin-right: 0px;
+  margin-left: 0px;
+  width : 100%;
+  
+}

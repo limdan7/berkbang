@@ -5,7 +5,7 @@
 </script>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12 price-font">
     <%= form_for(@room, :html => { multiplart: true, class:"form-horizontal", role:"form"}) do |f| %>
     <div class="form-group">
       <div class="control-label col-md-2 col-xs-2">
@@ -49,7 +49,7 @@
       <div class="control-label col-xs-2">
         <%= f.label '기간' %>
       </div>
-      <div class="col-md-3 col-md-offset-0 col-xs-offset-2 col-xs-9">
+      <div class="col-md-3 col-md-offset-0 col-xs-9">
           <span>시작</span>
           <%= f.date_field :start_date, class:"form-control", autofocus: true%>
       </div>
@@ -63,14 +63,14 @@
       <div class="control-label col-xs-2">
         <%= f.label '가격' %>
       </div>
-      <div class="col-xs-9">
+      <div class="col-md-10 col-xs-10">
         <div class="input-group">
           <span class="input-group-addon price-margin">$</span></span>
-          <%= f.number_field :price, class:"form-control",placeholder:"월세", autofocus: true%>
+          <%= f.number_field :price, class:"form-control price-font",placeholder:"월세", autofocus: true%>
           <span class="input-group-addon">$</span>
-          <%= f.number_field :deposit, class:"form-control",placeholder:"보증금", autofocus: true%>
+          <%= f.number_field :deposit, class:"form-control price-font",placeholder:"보증금", autofocus: true%>
           <span class="input-group-addon">$</span>
-          <%= f.number_field :utility, class:"form-control",placeholder:"유틸", autofocus: true%>
+          <%= f.number_field :utility, class:"form-control price-font",placeholder:"유틸", autofocus: true%>
         </div>
       </div>
     </div>
