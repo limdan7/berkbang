@@ -1,6 +1,22 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.fog_credentials = {
+    provider:              'AWS',                                           # required
+    aws_access_key_id:     ENV['AWS_ACCESS_KEY_ID'],                        # required
+    aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],                    # required
+    region:                'ap-northeast-2',                                # optional, defaults to 'us-east-1'
+    endpoint:              'https://s3.ap-northeast-2.amazonaws.com'        # optional, defaults to nil
+  }
+  
+config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: berkbangimage,
+      access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+      s3_region:us-west-1
+      }
+    } 
   # Code is not reloaded between requests.
   config.cache_classes = true
 
