@@ -14,6 +14,16 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  
+config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: 'berkbangimage',
+      access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+      s3_region: 'us-west-1'
+      }
+    } 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
